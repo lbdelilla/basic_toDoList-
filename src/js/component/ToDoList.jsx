@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 
+
 const ToDoList = () => {
-  const [countToDo, setCountToDo] = useState(1);
   const [toDo, setToDo] = useState("");
   const [list, setList] = useState(["This is a To Do"]);
 
+
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if ((e.key === "Enter") && (toDo != "")) {
       setList((prevList) => [...prevList, toDo]);
-      setCountToDo((prevCount) => prevCount + 1);
       setToDo("");
     }
   };
@@ -16,7 +16,6 @@ const ToDoList = () => {
   const handleDelete = (i) => {
     const updatedList = list.filter((_, index) => index !== i);
     setList(updatedList);
-    setCountToDo((prevCount) => prevCount - 1);
   };
 
   return (
@@ -55,7 +54,7 @@ const ToDoList = () => {
       : null}
         </ul>
         <span className="card-footer text-muted">
-          You have {countToDo} to do left{" "}
+          You have {list.length} to do left{" "}
         </span>
       </div>
     </section>
